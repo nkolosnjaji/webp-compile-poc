@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - libname: libwebp.so
             os: ubuntu-latest
@@ -32,7 +32,10 @@ jobs:
             sudo apt-get install gcc make autoconf automake libtool
           elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
             brew install gcc make autoconf automake libtool
+          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            choco install mingw -y
           fi
+          
       - name: Build WebP lib
         working-directory: ./libwebp
         run: |
@@ -43,5 +46,5 @@ jobs:
       - name: Archive WebP lib
         uses: actions/upload-artifact@v2
         with:
-          name: webp-${{ matrix.os }}
-          path: ../build/lib/${{ matrix.libname }}
+          name: ${{ matrix.libname }}
+          path: /home/runner/build/lib/${{ matrix.libname }}

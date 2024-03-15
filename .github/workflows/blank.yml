@@ -37,12 +37,29 @@ jobs:
         working-directory: ./libwebp
         run: |
           ./autogen.sh
-          ./configure --disable-static --disable-png --disable-jpeg --disable-tiff --disable-gif --disable-wic --disable-libwebpdecoder --disable-libwebpextras --disable-libwebpmux --disable-libwebpdemux --disable-sdl --prefix=${{ github.workspace }}/artifact
+          ./configure \
+          --disable-static \
+          --disable-png \
+          --disable-jpeg \
+          --disable-tiff \
+          --disable-gif \
+          --disable-wic \
+          --disable-libwebpdecoder \
+          --disable-libwebpextras \
+          --disable-libwebpmux \
+          --disable-libwebpdemux \
+          --disable-sdl \
+          --prefix=${{ github.workspace }}/artifact
           make
-          mkdir -p ${{ github.workspace }}/artifact
           make install
       - name: Archive WebP lib
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.libname }}
           path: ${{ github.workspace }}/artifact/lib/${{ matrix.libname }}
+  jar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1st step
+        run: echo 
+   

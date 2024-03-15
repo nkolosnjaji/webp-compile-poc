@@ -21,10 +21,9 @@ jobs:
       - name: Debug OS
         run: uname -a
       - name: Init WebP git submodule
+        working-directory: ./libwebp
         run: git submodule init
       - name: Build WebP lib
-        run: |
-          cd libwebp
-          ./configure --disable-static --disable-png --disable-jpeg --disable-tiff --disable-gif --disable-wic --disable-libwebpdecoder --disable-libwebpextras --disable-libwebpmux --disable-libwebpdemux --disable-sdl --prefix=$HOME/build
+        run: ./configure --disable-static --disable-png --disable-jpeg --disable-tiff --disable-gif --disable-wic --disable-libwebpdecoder --disable-libwebpextras --disable-libwebpmux --disable-libwebpdemux --disable-sdl --prefix=$HOME/build
       - name: Run a one-line script
         run: echo Hello, world!

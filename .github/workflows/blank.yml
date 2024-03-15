@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with: 
-          repository: https://github.com/webmproject/libwebp
+          repository: webmproject/libwebp
           token: ${{ secrets.ACTIONS_TOKEN }}
       - name: Debug OS
         run: uname -a

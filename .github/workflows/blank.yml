@@ -21,11 +21,13 @@ jobs:
             os: ubuntu-latest
           - libname: libwebp.dylib
             os: macos-latest
+          - libname: webp.dll
+            os: macos-latest
     steps:
       - uses: actions/checkout@v3
         with:
             submodules: recursive
-      - name: Debug OS
+      - name: Install tools
         run: |
           if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             sudo apt-get update
@@ -35,7 +37,6 @@ jobs:
           elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             choco install mingw -y
           fi
-          
       - name: Build WebP lib
         working-directory: ./libwebp
         run: |

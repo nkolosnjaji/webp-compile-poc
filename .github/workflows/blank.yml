@@ -21,7 +21,13 @@ jobs:
         with:
             submodules: recursive
       - name: Debug OS
-        run: uname -a
+        run: |
+          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+            sudo apt-get update
+            sudo apt-get install gcc make autoconf automake libtool
+          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            brew install gcc make autoconf automake libtool
+          fi
       - name: Build WebP lib
         working-directory: ./libwebp
         run: |

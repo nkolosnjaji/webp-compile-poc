@@ -15,13 +15,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
         include:
           - libname: libwebp.so
             os: ubuntu-latest
           - libname: libwebp.dylib
-            os: macos-latest
-          - libname: webp.dll
             os: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -34,8 +32,6 @@ jobs:
             sudo apt-get install gcc make autoconf automake libtool
           elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
             brew install gcc make autoconf automake libtool
-          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            choco install mingw -y
           fi
       - name: Build WebP lib
         working-directory: ./libwebp

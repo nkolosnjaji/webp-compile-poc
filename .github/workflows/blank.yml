@@ -18,14 +18,13 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
-        with: 
-          repository: webmproject/libwebp
-          token: ${{ secrets.ACTIONS_TOKEN }}
+        with:
+            submodules: recursive
       - name: Debug OS
         run: uname -a
-      - name: Init WebP git submodule
-        working-directory: ./libwebp
-        run: git submodule update --init --recursive
+      # - name: Init WebP git submodule
+      #   working-directory: ./libwebp
+      #   run: git submodule update --init --recursive
       - name: Debug
         working-directory: ./libwebp
         run: ls -la

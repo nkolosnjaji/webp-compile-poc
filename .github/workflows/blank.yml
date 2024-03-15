@@ -22,7 +22,7 @@ jobs:
         run: uname -a
       - name: Init WebP git submodule
         working-directory: ./libwebp
-        run: git submodule init
+        run: git submodule update --init --recursive
       - name: Debug
         working-directory: ./libwebp
         run: ls -la

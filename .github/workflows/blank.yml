@@ -57,9 +57,4 @@ jobs:
         with:
           name: ${{ matrix.libname }}
           path: ${{ github.workspace }}/artifact/lib/${{ matrix.libname }}
-  jar:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 1st step
-        run: echo 
    

@@ -19,24 +19,21 @@ jobs:
         include:
           - libname: libwebp_x86_64.so
             os: ubuntu-latest
+            install_tools_command: sudo apt-get update && sudo apt-get install gcc make autoconf automake libtool
           - libname: libwebp_x86_64.dylib
             os: macos-14
             arch: x86_64
+            install_tools_command: brew install gcc make autoconf automake libtool
           - libname: libwebp_aarch64.dylib
             os: macos-12
             arch: aarch64
+            install_tools_command: brew install gcc make autoconf automake libtool
     steps:
       - uses: actions/checkout@v3
         with:
             submodules: recursive
       - name: Install tools
-        run: |
-          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-            sudo apt-get update
-            sudo apt-get install gcc make autoconf automake libtool
-          elif [[ startsWith( "${{ matrix.os }}", "macos" ) ]]; then
-            brew install gcc make autoconf automake libtool
-          fi
+        run: ${{ matrix.install_tools_command }}
       - name: Build WebP lib
         working-directory: ./libwebp
         run: |

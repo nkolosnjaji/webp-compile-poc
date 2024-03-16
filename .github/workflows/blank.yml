@@ -17,15 +17,15 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-14, macos-12]
         include:
-          - libname: libwebp.so
+          - suffix: so
             os: ubuntu-latest
             arch: x86_64
             install_tools_command: sudo apt-get update && sudo apt-get install gcc make autoconf automake libtool
-          - libname: libwebp.dylib
+          - suffix: dylib
             os: macos-14
             arch: x86_64
             install_tools_command: brew install gcc make autoconf automake libtool
-          - libname: libwebp.dylib
+          - suffix: dylib
             os: macos-12
             arch: aarch64
             install_tools_command: brew install gcc make autoconf automake libtool
@@ -57,6 +57,6 @@ jobs:
       - name: Archive WebP lib
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.arch }}/${{ matrix.libname }}
-          path: ${{ github.workspace }}/artifact/lib/${{ matrix.libname }}
+          name: libwebp_${{ matrix.arch }}.${{ matrix.suffix }}
+          path: ${{ github.workspace }}/artifact/lib/libwebp.${{ matrix.suffix }}
    

@@ -23,11 +23,11 @@ jobs:
             install_tools_command: sudo apt-get update && sudo apt-get install gcc make autoconf automake libtool
           - suffix: dylib
             os: macos-14
-            arch: x86_64
+            arch: aarch64
             install_tools_command: brew install gcc make autoconf automake libtool
           - suffix: dylib
             os: macos-12
-            arch: aarch64
+            arch: x86_64
             install_tools_command: brew install gcc make autoconf automake libtool
     steps:
       - uses: actions/checkout@v3

@@ -15,12 +15,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest-14, macos-12]
         include:
-          - libname: libwebp.so
+          - libname: libwebp_x86_64.so
             os: ubuntu-latest
-          - libname: libwebp.dylib
-            os: macos-latest
+          - libname: libwebp_x86_64.dylib
+            os: macos-14
+            arch: x86_64
+          - libname: libwebp_aarch64.dylib
+            os: macos-12
+            arch: aarch64
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,7 +34,7 @@ jobs:
           if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             sudo apt-get update
             sudo apt-get install gcc make autoconf automake libtool
-          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+          elif [[ startsWith( ${{ matrix.os }}, macos ) ]]; then
             brew install gcc make autoconf automake libtool
           fi
       - name: Build WebP lib

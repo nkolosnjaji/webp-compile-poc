@@ -30,7 +30,7 @@ jobs:
             arch: x86_64
             install_tools_command: brew install gcc make autoconf automake libtool
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
             submodules: recursive
       - name: Install tools
@@ -55,8 +55,10 @@ jobs:
           make
           make install
       - name: Archive WebP lib
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: libwebp_${{ matrix.arch }}.${{ matrix.suffix }}
-          path: ${{ github.workspace }}/artifact/lib/libwebp.${{ matrix.suffix }}
+          path: |
+            ${{ github.workspace }}/artifact/lib/libsharpyuv.${{ matrix.suffix }}
+            ${{ github.workspace }}/artifact/lib/libwebp.${{ matrix.suffix }}
    

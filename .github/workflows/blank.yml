@@ -57,7 +57,7 @@ jobs:
       - name: Archive WebP lib
         uses: actions/upload-artifact@v4
         with:
-          name: libwebp_${{ matrix.arch }}.${{ matrix.suffix }}
+          name: libwebp_${{ matrix.arch }}
           path: |
             /tmp/webp-java-imageio/lib/libsharpyuv.${{ matrix.suffix }}
             /tmp/webp-java-imageio/lib/libwebp.${{ matrix.suffix }}

@@ -50,7 +50,8 @@ jobs:
           --disable-libwebpextras \
           --disable-libwebpmux \
           --disable-libwebpdemux \
-          --disable-sdl
+          --disable-sdl \
+          --prefix=/opt/libwebp-java-imageio/
           make
           make install
       - name: Archive WebP lib

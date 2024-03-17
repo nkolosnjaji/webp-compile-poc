@@ -50,8 +50,7 @@ jobs:
           --disable-libwebpextras \
           --disable-libwebpmux \
           --disable-libwebpdemux \
-          --disable-sdl \
-          --prefix=${{ github.workspace }}/artifact
+          --disable-sdl
           make
           make install
       - name: Archive WebP lib

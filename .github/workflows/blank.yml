@@ -51,7 +51,7 @@ jobs:
           --disable-libwebpmux \
           --disable-libwebpdemux \
           --disable-sdl \
-          --prefix=/usr/local/
+          --prefix=/tmp/webp-java-imageio/
           make
           make install
       - name: Archive WebP lib
@@ -59,6 +59,6 @@ jobs:
         with:
           name: libwebp_${{ matrix.arch }}.${{ matrix.suffix }}
           path: |
-            ${{ github.workspace }}/artifact/lib/libsharpyuv.${{ matrix.suffix }}
-            ${{ github.workspace }}/artifact/lib/libwebp.${{ matrix.suffix }}
+            /tmp/webp-java-imageio/lib/libsharpyuv.${{ matrix.suffix }}
+            /tmp/webp-java-imageio/lib/libwebp.${{ matrix.suffix }}
    

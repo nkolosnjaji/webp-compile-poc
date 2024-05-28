@@ -61,11 +61,12 @@ jobs:
           path: |
             /tmp/webp-java-imageio/lib/libsharpyuv.${{ matrix.suffix }}
             /tmp/webp-java-imageio/lib/libwebp.${{ matrix.suffix }}
-      - name: Build JAVA
+      - name: Setup JAVA
         uses: actions/setup-java@v4
         with:
           java-version: '22'
           distribution: 'temurin'
+      - name: Build JAVA
         run: mvn --batch-mode --update-snapshots verify
 
    

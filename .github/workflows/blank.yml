@@ -54,7 +54,7 @@ jobs:
           --disable-libwebpmux \
           --disable-libwebpdemux \
           --disable-sdl \
-          --prefix=../src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
+          --prefix=${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
           make
           make install
       - name: Copy libwebp

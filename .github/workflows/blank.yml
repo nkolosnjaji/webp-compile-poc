@@ -25,12 +25,12 @@ jobs:
           - suffix: dylib
             os: macos-12
             platform: mac
-            arch: aarch64
+            arch: x86_64
             install_tools_command: brew install gcc make autoconf automake libtool
           - suffix: dylib
             os: macos-14
             platform: mac
-            arch: x86_64
+            arch: aarch64
             install_tools_command: brew install gcc make autoconf automake libtool
     steps:
       - uses: actions/checkout@v4
@@ -57,9 +57,6 @@ jobs:
           --prefix=${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
           make
           make install
-      - name: Copy libwebp
-        run: | 
-          cd
       - name: Setup JAVA
         uses: actions/setup-java@v4
         with:

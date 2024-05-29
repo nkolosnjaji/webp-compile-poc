@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-            submodules: recursive
+          submodules: recursive
       - name: Install tools
         run: ${{ matrix.install_tools_command }}
       - name: Build WebP lib
@@ -57,6 +57,8 @@ jobs:
           --prefix=${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
           make
           make install
+      - name: Debug step
+        run: ls -lah ${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
       - name: Setup JAVA
         uses: actions/setup-java@v4
         with:

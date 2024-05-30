@@ -59,10 +59,8 @@ jobs:
           make install
       - name: Copy WebP
         run: |
-          ls -lah /tmp/webp-java-imageio/lib/
           cp /tmp/webp-java-imageio/lib/libsharpyuv.${{ matrix.suffix }} ${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
           cp /tmp/webp-java-imageio/lib/libwebp.${{ matrix.suffix }} ${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
-          ls -lah ${GITHUB_WORKSPACE}/src/main/resources/lib/${{ matrix.platform }}/${{ matrix.arch }}
       - name: Setup JAVA
         uses: actions/setup-java@v4
         with:
@@ -70,5 +68,12 @@ jobs:
           distribution: 'temurin'
       - name: Build JAVA
         run: mvn -ntp clean verify
-
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: libwebp_${{ matrix.os }}_${{ matrix.arch }}
+          path: |
+            /tmp/webp-java-imageio/lib/libsharpyuv.${{ matrix.suffix }}
+            /tmp/webp-java-imageio/lib/libwebp.${{ matrix.suffix }}
+            ${GITHUB_WORKSPACE}/target/*.jar
    
